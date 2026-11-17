@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Briefing & Debriefing Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function showTab(tabName) {
+            document.getElementById('briefing').classList.add('hidden');
+            document.getElementById('debriefing').classList.add('hidden');
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            document.getElementById('btn-briefing').classList.replace('bg-blue-600', 'bg-gray-200');
+            document.getElementById('btn-briefing').classList.replace('text-white', 'text-gray-700');
+            document.getElementById('btn-debriefing').classList.replace('bg-blue-600', 'bg-gray-200');
+            document.getElementById('btn-debriefing').classList.replace('text-white', 'text-gray-700');
+            
+            document.getElementById('btn-' + tabName).classList.replace('bg-gray-200', 'bg-blue-600');
+            document.getElementById('btn-' + tabName).classList.replace('text-gray-700', 'text-white');
+        }
+    </script>
+</head>
+<body class="bg-slate-50 font-sans p-4 max-w-lg mx-auto">
+
+    <div class="flex space-x-2 mb-6">
+        <button id="btn-briefing" onclick="showTab('briefing')" class="flex-1 py-3 rounded-lg font-bold text-lg bg-blue-600 text-white shadow">BRIEFING</button>
+        <button id="btn-debriefing" onclick="showTab('debriefing')" class="flex-1 py-3 rounded-lg font-bold text-lg bg-gray-200 text-gray-700 shadow">DEBRIEFING</button>
+    </div>
+
+    <!-- BRIEFING SECTION -->
+    <div id="briefing" class="space-y-4">
+        <div class="bg-teal-100 p-4 rounded-xl border-l-4 border-teal-500 shadow">
+            <h2 class="font-bold text-teal-800 text-xl mb-2">1. AMENAZAS (Threats)</h2>
+            <ul class="text-sm space-y-1 text-teal-900 mb-3">
+                <li><strong>Personal:</strong> Estresores, Distractores, Currencia, Fatiga</li>
+                <li><strong>Environmental:</strong> Weather, Terreno, RWY/Ruta, Ground/Ramp, Idioma, Hazmats</li>
+                <li><strong>Técnico:</strong> Sistemas Avión, MEL/CDL, Performance/LMC, Automatización</li>
+            </ul>
+            <div class="bg-teal-200 p-2 rounded text-center text-xs font-bold text-teal-800 uppercase">Gestión de las Amenazas</div>
+        </div>
+
+        <div class="bg-blue-100 p-4 rounded-xl border-l-4 border-blue-600 shadow">
+            <h2 class="font-bold text-blue-800 text-xl mb-2">2. ERRORES</h2>
+            <div class="bg-blue-200 p-2 rounded text-center text-xs font-bold text-blue-800 uppercase">Gestión del Error</div>
+        </div>
+
+        <div class="bg-red-100 p-4 rounded-xl border-l-4 border-red-500 shadow">
+            <h2 class="font-bold text-red-800 text-xl mb-2">3. ESTADO NO DESEADO</h2>
+            <div class="bg-red-200 p-2 rounded text-center text-xs font-bold text-red-800 uppercase">Manejo Estado No Deseado</div>
+        </div>
+        
+        <div class="bg-gray-200 p-3 rounded-xl text-center shadow">
+            <h2 class="font-bold text-gray-700 text-lg uppercase">ESTADO FINAL</h2>
+        </div>
+    </div>
+
+    <!-- DEBRIEFING SECTION -->
+    <div id="debriefing" class="hidden space-y-4">
+        <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
+            <h2 class="font-bold text-blue-900 text-lg mb-2 border-b pb-1">TDODAR</h2>
+            <ul class="grid grid-cols-2 gap-2 text-sm">
+                <li><span class="font-bold">T</span> - Time</li>
+                <li><span class="font-bold">D</span> - Diagnose</li>
+                <li><span class="font-bold">O</span> - Options</li>
+                <li><span class="font-bold">D</span> - Decide</li>
+                <li><span class="font-bold">A</span> - Assign</li>
+                <li><span class="font-bold">R</span> - Review</li>
+            </ul>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+            <div class="bg-green-100 p-3 rounded-lg shadow text-center">
+                <h3 class="font-bold text-green-800">¿Qué hicimos bien?</h3>
+                <p class="text-xs text-green-700 mt-1 font-bold italic">¿Por qué?</p>
+            </div>
+            <div class="bg-yellow-100 p-3 rounded-lg shadow text-center">
+                <h3 class="font-bold text-yellow-800">¿Qué pudimos hacer mejor?</h3>
+                <p class="text-xs text-yellow-700 mt-1 font-bold italic">¿Por qué?</p>
+            </div>
+        </div>
+
+        <div class="bg-indigo-100 p-4 rounded-xl shadow text-center">
+            <h2 class="font-bold text-indigo-900 text-lg mb-2">CRM / FFHH</h2>
+            <p class="text-sm text-indigo-800 font-mono">TEM - COM - LTC - CSI<br>AYT - AEV - PTD - MON</p>
+        </div>
+
+        <div class="bg-emerald-500 p-4 rounded-xl shadow text-center text-white">
+            <h2 class="font-bold text-lg">¿Qué vamos a hacer la próxima vez?</h2>
+        </div>
+
+        <div class="bg-gray-100 p-4 rounded-xl shadow border border-gray-300">
+            <h3 class="font-bold text-gray-800 border-b pb-1 mb-2">Reportes:</h3>
+            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                <li>- MLB</li>
+                <li>- AQD</li>
+                <li>- Informe de Vuelo</li>
+                <li>- Otros</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
