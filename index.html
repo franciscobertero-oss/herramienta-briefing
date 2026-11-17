@@ -11,91 +11,123 @@
             document.getElementById('debriefing').classList.add('hidden');
             document.getElementById(tabName).classList.remove('hidden');
             
-            document.getElementById('btn-briefing').classList.replace('bg-blue-600', 'bg-gray-200');
-            document.getElementById('btn-briefing').classList.replace('text-white', 'text-gray-700');
-            document.getElementById('btn-debriefing').classList.replace('bg-blue-600', 'bg-gray-200');
-            document.getElementById('btn-debriefing').classList.replace('text-white', 'text-gray-700');
-            
-            document.getElementById('btn-' + tabName).classList.replace('bg-gray-200', 'bg-blue-600');
-            document.getElementById('btn-' + tabName).classList.replace('text-gray-700', 'text-white');
+            document.getElementById('btn-briefing').className = tabName === 'briefing' 
+                ? 'flex-1 py-3 rounded-lg font-bold text-lg bg-blue-900 text-white shadow-lg transition' 
+                : 'flex-1 py-3 rounded-lg font-bold text-lg bg-gray-200 text-gray-500 shadow transition';
+                
+            document.getElementById('btn-debriefing').className = tabName === 'debriefing' 
+                ? 'flex-1 py-3 rounded-lg font-bold text-lg bg-blue-900 text-white shadow-lg transition' 
+                : 'flex-1 py-3 rounded-lg font-bold text-lg bg-gray-200 text-gray-500 shadow transition';
         }
     </script>
 </head>
 <body class="bg-slate-50 font-sans p-4 max-w-lg mx-auto">
 
     <div class="flex space-x-2 mb-6">
-        <button id="btn-briefing" onclick="showTab('briefing')" class="flex-1 py-3 rounded-lg font-bold text-lg bg-blue-600 text-white shadow">BRIEFING</button>
-        <button id="btn-debriefing" onclick="showTab('debriefing')" class="flex-1 py-3 rounded-lg font-bold text-lg bg-gray-200 text-gray-700 shadow">DEBRIEFING</button>
+        <button id="btn-briefing" onclick="showTab('briefing')" class="flex-1 py-3 rounded-lg font-bold text-lg bg-blue-900 text-white shadow-lg transition">BRIEFING</button>
+        <button id="btn-debriefing" onclick="showTab('debriefing')" class="flex-1 py-3 rounded-lg font-bold text-lg bg-gray-200 text-gray-500 shadow transition">DEBRIEFING</button>
     </div>
 
-    <!-- BRIEFING SECTION -->
-    <div id="briefing" class="space-y-4">
-        <div class="bg-teal-100 p-4 rounded-xl border-l-4 border-teal-500 shadow">
-            <h2 class="font-bold text-teal-800 text-xl mb-2">1. AMENAZAS (Threats)</h2>
-            <ul class="text-sm space-y-1 text-teal-900 mb-3">
-                <li><strong>Personal:</strong> Estresores, Distractores, Currencia, Fatiga</li>
-                <li><strong>Environmental:</strong> Weather, Terreno, RWY/Ruta, Ground/Ramp, Idioma, Hazmats</li>
-                <li><strong>Técnico:</strong> Sistemas Avión, MEL/CDL, Performance/LMC, Automatización</li>
-            </ul>
-            <div class="bg-teal-200 p-2 rounded text-center text-xs font-bold text-teal-800 uppercase">Gestión de las Amenazas</div>
-        </div>
-
-        <div class="bg-blue-100 p-4 rounded-xl border-l-4 border-blue-600 shadow">
-            <h2 class="font-bold text-blue-800 text-xl mb-2">2. ERRORES</h2>
-            <div class="bg-blue-200 p-2 rounded text-center text-xs font-bold text-blue-800 uppercase">Gestión del Error</div>
-        </div>
-
-        <div class="bg-red-100 p-4 rounded-xl border-l-4 border-red-500 shadow">
-            <h2 class="font-bold text-red-800 text-xl mb-2">3. ESTADO NO DESEADO</h2>
-            <div class="bg-red-200 p-2 rounded text-center text-xs font-bold text-red-800 uppercase">Manejo Estado No Deseado</div>
+    <!-- BRIEFING SECTION (TEM Inverted Pyramid) -->
+    <div id="briefing" class="flex flex-col items-center">
+        
+        <!-- AMENAZAS -->
+        <div class="w-full bg-[#82ded9] p-4 text-center rounded-t-xl shadow-md border-b-4 border-[#69c7c2]">
+            <h2 class="font-bold text-white text-2xl mb-3 tracking-widest uppercase shadow-sm">Amenazas</h2>
+            <div class="text-[11px] text-teal-900 text-left grid grid-cols-2 gap-x-2 gap-y-1 bg-white/60 p-2 rounded">
+                <div><strong>Personal:</strong> Estresores, Distractores, Currencia, Fatiga</div>
+                <div><strong>Técnico:</strong> Sistemas Avión, MEL/CDL, Perf/LMC, Auto.</div>
+                <div class="col-span-2"><strong>Environmental:</strong> Weather, Terreno, RWY/Ruta, Ground/Ramp, Idioma, Hazmats</div>
+            </div>
         </div>
         
-        <div class="bg-gray-200 p-3 rounded-xl text-center shadow">
-            <h2 class="font-bold text-gray-700 text-lg uppercase">ESTADO FINAL</h2>
+        <!-- GESTION AMENAZAS -->
+        <div class="w-[95%] bg-teal-50 py-1 text-center text-[10px] font-bold text-teal-600 uppercase border-x border-teal-200">
+            ↓ Gestión de las Amenazas ↓
+        </div>
+
+        <!-- ERRORES -->
+        <div class="w-[85%] bg-[#1a237e] py-4 px-2 text-center shadow-md">
+            <h2 class="font-bold text-xl uppercase text-white tracking-wider">Errores</h2>
+        </div>
+
+        <!-- GESTION ERRORES -->
+        <div class="w-[78%] bg-indigo-50 py-1 text-center text-[10px] font-bold text-indigo-800 uppercase border-x border-indigo-200">
+            ↓ Gestión del Error ↓
+        </div>
+
+        <!-- ESTADO NO DESEADO -->
+        <div class="w-[70%] bg-[#e53935] py-4 px-2 text-center shadow-md">
+            <h2 class="font-bold text-lg uppercase text-white leading-tight tracking-wide">Estado No Deseado</h2>
+        </div>
+
+        <!-- MANEJO ESTADO NO DESEADO -->
+        <div class="w-[62%] bg-red-50 py-1 text-center text-[10px] font-bold text-red-800 uppercase border-x border-red-200">
+            ↓ Manejo Estado No Deseado ↓
+        </div>
+
+        <!-- ESTADO FINAL -->
+        <div class="w-[50%] bg-gray-300 py-3 px-2 text-center rounded-b-xl shadow-md mt-1">
+            <h2 class="font-bold text-gray-700 text-sm uppercase">Estado Final</h2>
         </div>
     </div>
 
     <!-- DEBRIEFING SECTION -->
     <div id="debriefing" class="hidden space-y-4">
-        <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
-            <h2 class="font-bold text-blue-900 text-lg mb-2 border-b pb-1">TDODAR</h2>
-            <ul class="grid grid-cols-2 gap-2 text-sm">
-                <li><span class="font-bold">T</span> - Time</li>
-                <li><span class="font-bold">D</span> - Diagnose</li>
-                <li><span class="font-bold">O</span> - Options</li>
-                <li><span class="font-bold">D</span> - Decide</li>
-                <li><span class="font-bold">A</span> - Assign</li>
-                <li><span class="font-bold">R</span> - Review</li>
+        <!-- TDODAR -->
+        <div class="bg-white p-4 rounded-xl shadow-md border-t-4 border-blue-900">
+            <h2 class="font-bold text-blue-900 text-lg mb-2 text-center border-b pb-1 uppercase tracking-widest">TDODAR</h2>
+            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-700 ml-4">
+                <li><strong class="text-blue-900">T</strong>- TIME</li>
+                <li><strong class="text-blue-900">D</strong>- DIAGNOSE</li>
+                <li><strong class="text-blue-900">O</strong>- OPTIONS</li>
+                <li><strong class="text-blue-900">D</strong>- DECIDE</li>
+                <li><strong class="text-blue-900">A</strong>- ASSIGN</li>
+                <li><strong class="text-blue-900">R</strong>- REVIEW</li>
             </ul>
         </div>
 
+        <!-- PREGUNTAS -->
         <div class="grid grid-cols-2 gap-3">
-            <div class="bg-green-100 p-3 rounded-lg shadow text-center">
-                <h3 class="font-bold text-green-800">¿Qué hicimos bien?</h3>
-                <p class="text-xs text-green-700 mt-1 font-bold italic">¿Por qué?</p>
+            <div class="bg-[#a5d6a7] p-3 rounded-lg shadow-md text-center border border-green-400">
+                <h3 class="font-bold text-green-900 text-sm">¿Qué hicimos<br>Bien?</h3>
+                <div class="bg-white/50 mx-auto mt-2 rounded py-1">
+                    <p class="text-xs text-green-800 font-bold italic">¿Por qué?</p>
+                </div>
             </div>
-            <div class="bg-yellow-100 p-3 rounded-lg shadow text-center">
-                <h3 class="font-bold text-yellow-800">¿Qué pudimos hacer mejor?</h3>
-                <p class="text-xs text-yellow-700 mt-1 font-bold italic">¿Por qué?</p>
+            <div class="bg-[#c5e1a5] p-3 rounded-lg shadow-md text-center border border-lime-400">
+                <h3 class="font-bold text-lime-900 text-sm">¿Qué pudimos<br>Hacer Mejor?</h3>
+                <div class="bg-white/50 mx-auto mt-2 rounded py-1">
+                    <p class="text-xs text-lime-800 font-bold italic">¿Por qué?</p>
+                </div>
             </div>
         </div>
 
-        <div class="bg-indigo-100 p-4 rounded-xl shadow text-center">
-            <h2 class="font-bold text-indigo-900 text-lg mb-2">CRM / FFHH</h2>
-            <p class="text-sm text-indigo-800 font-mono">TEM - COM - LTC - CSI<br>AYT - AEV - PTD - MON</p>
+        <!-- CRM / FFHH -->
+        <div class="bg-[#aed581] p-4 rounded-xl shadow-md text-center border border-light-green-500 relative">
+            <!-- Flechas bajando desde las preguntas -->
+            <div class="absolute -top-4 left-1/4 text-2xl text-[#aed581]">⬇</div>
+            <div class="absolute -top-4 right-1/4 text-2xl text-[#aed581]">⬇</div>
+            
+            <h2 class="font-bold text-green-900 text-lg mb-1 underline uppercase">CRM / FFHH</h2>
+            <p class="text-sm text-green-900 font-bold tracking-wide">TEM - COM - LTC - CSI</p>
+            <p class="text-sm text-green-900 font-bold tracking-wide">AYT - AEV - PTD - MON</p>
         </div>
 
-        <div class="bg-emerald-500 p-4 rounded-xl shadow text-center text-white">
-            <h2 class="font-bold text-lg">¿Qué vamos a hacer la próxima vez?</h2>
+        <!-- PROXIMA VEZ -->
+        <div class="bg-[#81c784] p-4 rounded-xl shadow-md text-center text-green-900 border border-green-500 relative">
+            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 text-3xl text-[#81c784]">⬇</div>
+            <h2 class="font-bold text-md uppercase">¿Qué vamos a hacer<br>La próxima vez?</h2>
         </div>
 
-        <div class="bg-gray-100 p-4 rounded-xl shadow border border-gray-300">
-            <h3 class="font-bold text-gray-800 border-b pb-1 mb-2">Reportes:</h3>
-            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-700">
-                <li>- MLB</li>
-                <li>- AQD</li>
-                <li>- Informe de Vuelo</li>
-                <li>- Otros</li>
+        <!-- REPORTES -->
+        <div class="bg-white p-3 rounded-xl shadow border border-gray-200 text-center">
+            <h3 class="font-bold text-gray-800 underline mb-2 text-sm">Reportes:</h3>
+            <ul class="grid grid-cols-2 gap-1 text-xs text-gray-600 font-bold">
+                <li>- MLB.</li>
+                <li>- AQD.</li>
+                <li>- Informe de Vuelo.</li>
+                <li>- Otros.</li>
             </ul>
         </div>
     </div>
